@@ -12,19 +12,15 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const cfToken = process.env.NEXT_PUBLIC_CLOUDFLARE_TOKEN;
-
   return (
     <html lang="id">
       <head>
-        {/* Cloudflare Web Analytics - Free, privacy-friendly */}
-        {cfToken && (
-          <script
-            defer
-            src="https://static.cloudflareinsights.com/beacon.min.js"
-            data-cf-beacon={`{"token": "${cfToken}"}`}
-          />
-        )}
+        {/* Cloudflare Web Analytics */}
+        <script
+          type="module"
+          src="https://static.cloudflareinsights.com/beacon.min.js"
+          data-cf-beacon='{"token": "db14af6a91f244aa82a9c2d78c69d585"}'
+        />
       </head>
       <body className="min-h-full flex flex-col antialiased">
         {children}
