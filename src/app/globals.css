@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
-/* Airbnb-inspired Design Tokens */
-:root {
+/* Airbnb-inspired Design Tokens - Tailwind v4 */
+@theme {
   /* Colors - Brand & Accent */
   --color-primary: #ff385c;
   --color-primary-active: #e00b41;
@@ -33,21 +33,6 @@
   --color-on-dark: #ffffff;
   --color-legal-link: #428bff;
   --color-star-rating: #222222;
-  --color-scrim: #000000;
-
-  /* Typography */
-  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-
-  /* Spacing */
-  --spacing-xxs: 2px;
-  --spacing-xs: 4px;
-  --spacing-sm: 8px;
-  --spacing-md: 12px;
-  --spacing-base: 16px;
-  --spacing-lg: 24px;
-  --spacing-xl: 32px;
-  --spacing-xxl: 48px;
-  --spacing-section: 64px;
 
   /* Border Radius */
   --radius-none: 0px;
@@ -58,24 +43,8 @@
   --radius-xl: 32px;
   --radius-full: 9999px;
 
-  /* Shadows */
-  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.05);
-  --shadow-card-hover: 0 2px 6px rgba(0, 0, 0, 0.04), 0 4px 8px rgba(0, 0, 0, 0.1);
-  --shadow-dropdown: 0 1px 3px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-@theme inline {
-  --color-primary: var(--color-primary);
-  --color-primary-active: var(--color-primary-active);
-  --color-ink: var(--color-ink);
-  --color-body: var(--color-body);
-  --color-muted: var(--color-muted);
-  --color-canvas: var(--color-canvas);
-  --color-surface-soft: var(--color-surface-soft);
-  --color-surface-strong: var(--color-surface-strong);
-  --color-hairline: var(--color-hairline);
-  --color-on-primary: var(--color-on-primary);
-  --font-sans: var(--font-family);
+  /* Font Family */
+  --font-family-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 /* Base Styles */
@@ -88,9 +57,9 @@ html {
 }
 
 body {
-  background: var(--color-canvas);
+  background-color: var(--color-canvas);
   color: var(--color-ink);
-  font-family: var(--font-family);
+  font-family: var(--font-family-sans);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -260,11 +229,11 @@ body {
 }
 
 .card:hover {
-  box-shadow: var(--shadow-card-hover);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04), 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .card-body {
-  padding: var(--spacing-base);
+  padding: 16px;
 }
 
 /* Search Bar */
@@ -276,7 +245,7 @@ body {
   align-items: center;
   gap: 8px;
   border: 1px solid var(--color-hairline);
-  box-shadow: var(--shadow-card);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
   max-width: 850px;
   margin: 0 auto;
 }
@@ -404,7 +373,7 @@ body {
 .badge-featured {
   background-color: var(--color-canvas);
   color: var(--color-ink);
-  box-shadow: var(--shadow-dropdown);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 /* Coffee Shop Card Image */
@@ -422,13 +391,13 @@ body {
 .container {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 0 var(--spacing-lg);
+  padding: 0 24px;
 }
 
 .container-narrow {
   max-width: 1080px;
   margin: 0 auto;
-  padding: 0 var(--spacing-lg);
+  padding: 0 24px;
 }
 
 /* Nav */
@@ -446,7 +415,7 @@ body {
 .nav-content {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 0 var(--spacing-lg);
+  padding: 0 24px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -463,7 +432,7 @@ body {
 .nav-links {
   display: flex;
   align-items: center;
-  gap: var(--spacing-lg);
+  gap: 24px;
 }
 
 .nav-link {
@@ -481,9 +450,9 @@ body {
 /* Footer */
 .footer {
   background-color: var(--color-canvas);
-  padding: var(--spacing-xxl) var(--spacing-xxl);
+  padding: 48px 48px;
   border-top: 1px solid var(--color-hairline);
-  margin-top: var(--spacing-section);
+  margin-top: 64px;
 }
 
 .footer-content {
@@ -491,14 +460,14 @@ body {
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: var(--spacing-xl);
+  gap: 32px;
 }
 
 .footer-title {
   font-size: 16px;
   font-weight: 500;
   color: var(--color-ink);
-  margin-bottom: var(--spacing-base);
+  margin-bottom: 16px;
 }
 
 .footer-link {
@@ -506,7 +475,7 @@ body {
   color: var(--color-muted);
   text-decoration: none;
   display: block;
-  margin-bottom: var(--spacing-sm);
+  margin-bottom: 8px;
   transition: color 0.15s ease;
 }
 
@@ -516,27 +485,27 @@ body {
 
 /* Section */
 .section {
-  padding: var(--spacing-section) 0;
+  padding: 64px 0;
 }
 
 /* Grid */
 .grid-cards {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: var(--spacing-lg);
+  gap: 24px;
 }
 
 /* City Grid */
 .city-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: var(--spacing-base);
+  gap: 16px;
 }
 
 .city-card {
   text-decoration: none;
   color: var(--color-ink);
-  padding: var(--spacing-base);
+  padding: 16px;
   border-radius: var(--radius-md);
   transition: background-color 0.15s ease;
 }
@@ -547,7 +516,7 @@ body {
 
 /* Hero */
 .hero {
-  padding: var(--spacing-xxl) 0;
+  padding: 48px 0;
   text-align: center;
 }
 
@@ -556,13 +525,13 @@ body {
   font-weight: 700;
   line-height: 1.1;
   color: var(--color-ink);
-  margin-bottom: var(--spacing-base);
+  margin-bottom: 16px;
 }
 
 .hero-subtitle {
   font-size: 18px;
   color: var(--color-body);
-  margin-bottom: var(--spacing-xl);
+  margin-bottom: 32px;
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
@@ -591,12 +560,12 @@ body {
 /* Lead Form */
 .lead-form {
   background-color: var(--color-surface-soft);
-  padding: var(--spacing-xl);
+  padding: 32px;
   border-radius: var(--radius-md);
 }
 
 .form-group {
-  margin-bottom: var(--spacing-base);
+  margin-bottom: 16px;
 }
 
 .form-label {
@@ -604,13 +573,13 @@ body {
   font-size: 14px;
   font-weight: 500;
   color: var(--color-muted);
-  margin-bottom: var(--spacing-xs);
+  margin-bottom: 4px;
 }
 
 .form-checkbox {
   display: flex;
   align-items: center;
-  gap: var(--spacing-sm);
+  gap: 8px;
   cursor: pointer;
 }
 
@@ -670,8 +639,8 @@ body {
 
   .search-bar {
     flex-direction: column;
-    padding: var(--spacing-md);
-    gap: var(--spacing-sm);
+    padding: 12px;
+    gap: 8px;
   }
 
   .search-orb {
@@ -684,7 +653,7 @@ body {
   }
 
   .container {
-    padding: 0 var(--spacing-base);
+    padding: 0 16px;
   }
 }
 
