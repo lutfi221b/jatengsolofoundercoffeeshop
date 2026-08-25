@@ -1,0 +1,80 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model CoffeeShop {
+  id            String    @id @default(cuid())
+  name          String
+  slug          String    @unique
+  city          String
+  district      String
+  address       String
+  latitude      Float?
+  longitude     Float?
+  googleMapsUrl String?   @map("google_maps_url")
+  instagramUrl  String?   @map("instagram_url")
+  phone         String?
+  description   String
+  priceRange    String    @map("price_range")
+  priceLabel    String    @map("price_label")
+  wifiScore     Int       @map("wifi_score")
+  outletScore   Int       @map("outlet_score")
+  comfortScore  Int       @map("comfort_score")
+  noiseScore    Int       @map("noise_score")
+  meetingScore  Int       @map("meeting_score")
+  seatingScore Int        @map("seating_score")
+  openingHours  String    @map("opening_hours")
+  founderScore  Float     @map("founder_score")
+  featured      Boolean   @default(false)
+  status        String    @default("pending")
+  amenities     String[]
+  imageUrl      String?   @map("image_url")
+  createdAt     DateTime  @default(now()) @map("created_at")
+  updatedAt     DateTime  @updatedAt @map("updated_at")
+  leads         Lead[]
+
+  @@map("coffee_shops")
+}
+
+model Lead {
+  id              String   @id @default(cuid())
+  coffeeShopId    String?  @map("coffee_shop_id")
+  coffeeShop      CoffeeShop? @relation(fields: [coffeeShopId], references: [id])
+  name            String
+  email           String
+  phone           String?
+  intent          String
+  message         String?
+  status          String   @default("new")
+  createdAt       DateTime @default(now()) @map("created_at")
+
+  @@map("leads")
+}
+
+model Submission {
+  id            String   @id @default(cuid())
+  name          String
+  city          String
+  address       String
+  googleMapsUrl String?  @map("google_maps_url")
+  instagramUrl  String?  @map("instagram_url")
+  phone         String?
+  openingHours  String?  @map("opening_hours")
+  priceRange    String?  @map("price_range")
+  wifi          Boolean  @default(false)
+  outlet        Boolean  @default(false)
+  meeting       Boolean  @default(false)
+  quiet         Boolean  @default(false)
+  outdoor       Boolean  @default(false)
+  ac            Boolean  @default(false)
+  description   String?
+  status        String   @default("pending")
+  createdAt     DateTime @default(now()) @map("created_at")
+
+  @@map("submissions")
+}
